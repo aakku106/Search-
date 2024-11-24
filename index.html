@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e2e2e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .landing {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .search-container {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 400px 1px #fffefe80;
+
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: #444;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            background-color: #666;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        .result-item {
+            margin: 5px 0;
+        }
+
+        .result-item a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+
+
+        .content {
+            padding: 20px;
+            background-color: #ddd;
+            color: #333;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="landing">
+        <div class="search-container">
+            <h1>Search Topics</h1>
+            <input type="text" id="search-bar" placeholder="Search for topics...">
+            <br>
+            <button onclick="searchPage()">Search</button>
+
+            <div id="search-results" class="results"></div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Topics</h2>
+        <ul>
+            <li><a href="https://www.adarashagaihre.com.np">Adarasha Gaihre's portfolio website</a></li>
+            <li>
+                <a href="https://www.adarashagaihre.com.np/addressing-mode-in-8085-microprocessor/">8085 Addressing
+                    Modes
+                </a>
+            </li>
+            <li><a href="https://www.adarashagaihre.com.np/cpp_secondSem/">OOP with C++</a></li>
+            <li><a href="https://www.adarashagaihre.com.np/CCN/">Project CCN</a></li>
+            <li><a href="https://github.com/aakku106/Jeez-Nepatha_RC_Robo_Race-">Project jeez</a></li>
+            <li><a href="https://www.adarashagaihre.com.np/anime_noProjectto/">Anime website project</a></li>
+            <li><a href="https://www.adarashagaihre.com.np/SamanEcommerceproject/">E-commerce project
+                    (SamanEcommerceproject)</a></li>
+        </ul>
+
+    </div>
+
+    <script>
+        // Inline JSON data
+        const topicsData = [
+            {
+                "title": "8085 Addressing Modes",
+                "link": "https://www.adarashagaihre.com.np/addressing-mode-in-8085-microprocessor/"
+            },
+            {
+                "title": "Adarasha Gaihre's portfolio website",
+                "link": "https://www.adarashagaihre.com.np"
+            },
+            {
+                "title": "Project CCN",
+                "link": "https://www.adarashagaihre.com.np/CCN/"
+            },
+            {
+                "title": "Project jeez",
+                "link": "https://github.com/aakku106/Jeez-Nepatha_RC_Robo_Race-"
+            },
+
+            {
+                "title": "Anime website project",
+                "link": "https://www.adarashagaihre.com.np/anime_noProjectto/"
+            },
+            {
+                "title": "E-commerce project (SamanEcommerceproject)",
+                "link": "https://www.adarashagaihre.com.np/SamanEcommerceproject/"
+            },
+
+            {
+                "title": "oop with C++",
+                "link": "https://www.adarashagaihre.com.np/cpp_secondSem/"
+            },
+        ];
+
+        function searchPage() {
+            const query = document.getElementById("search-bar").value.toLowerCase();
+            const resultsDiv = document.getElementById("search-results");
+
+            // Clear previous results
+            resultsDiv.innerHTML = "";
+
+            // If the query is empty, do nothing
+            if (!query) {
+                return;
+            }
+
+            // Filter the topics that match the search query
+            const filteredResults = topicsData.filter(item =>
+                item.title.toLowerCase().includes(query)
+            );
+
+            // Display the results
+            if (filteredResults.length > 0) {
+                filteredResults.forEach(item => {
+                    const resultItem = document.createElement("div");
+                    resultItem.classList.add("result-item");
+                    resultItem.innerHTML = `<a href="${item.link}">${item.title}</a>`;
+                    resultsDiv.appendChild(resultItem);
+                });
+            } else {
+                resultsDiv.innerHTML = "No results found.";
+            }
+        }   
+    </script>
+</body>
+
+
+</html>
